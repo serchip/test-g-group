@@ -48,11 +48,11 @@
 
 ## Решение:
 
-![preview](/doc/web-api-run.gif)
+![preview](/doc/web-api-run1.gif)
 
-![preview](/doc/web-api-run.gif)
+![preview](/doc/web-api-run2.gif)
 
-![preview](/doc/web-api-run.gif)
+![preview](/doc/web-api-run3.gif)
 
 ## How to run it locally
 
