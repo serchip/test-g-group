@@ -1,0 +1,53 @@
+services:
+  app:
+    build:
+      context: .
+      target: app
+    ports:
+      - 8000:80
+    volumes:
+      - .:/src
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_SERVER=db
+    depends_on:
+      - migrations
+      - db
+
+  migrations:
+    build:
+      context: .
+      target: migrations
+    depends_on:
+      - db
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_SERVER=db
+    volumes:
+      - .:/src
+
+  pytests:
+    build:
+      context: .
+      target: pytests
+    depends_on:
+      - db
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_SERVER=db
+    volumes:
+      - .:/src
+    # entrypoint: ["python"]
+    # tty: true
+
+  db:
+    image: postgres:15.2
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+    volumes:
+      - ./dbdata:/var/lib/postgresql/data:cached
